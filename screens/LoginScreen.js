@@ -1,10 +1,12 @@
-import React from "react";
-import {View, Text} from 'react-native'
+import { View, Text } from 'react-native'
+import React from 'react'
 
-export default function LoginScreen() {
-    return (
-        <View>
-            <Text>Login screen</Text>
-        </View>
-    )
+const LoginScreen = () => {
+  return (
+    <View style={styles.login_conatiner}>
+      <Text>LoginScreen</Text>
+    </View>
+  )
 }
+
+export default LoginScreen

@@ -5,6 +5,7 @@ import IntroScreen from '../screens/IntroScreen'
 import { LogBox } from 'react-native';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
+import NavigationScreen from '../screens/NavigationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function AppNavigation() {
                 <Stack.Screen name="Intro page" options={{headerShown: false}} component={IntroScreen} />
                 <Stack.Screen name="Login page" options={{headerShown: false}} component={LoginScreen} />
                 <Stack.Screen name="Sign up page" options={{headerShown: false}} component={SignupScreen} />
+                <Stack.Screen name="Navigation page" options={{headerShown: false}} component={NavigationScreen} />
 
                 
             </Stack.Navigator>
