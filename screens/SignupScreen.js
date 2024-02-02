@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
 import React from 'react'
 
-const SignupScreen = () => {
+const SignupScreen = ({navigation}) => {
   return (
     <View style={styles.reg_conatiner}>
       <Text style={styles.reg_text}>Создайте аккаунт</Text>
@@ -15,19 +15,19 @@ const SignupScreen = () => {
         <TextInput />
         </View>
         <View style={styles.reg_input}>
-        <Text style={styles.input_label} >Ваше пол</Text>
-        <TextInput />
-        </View>
-        <View style={styles.reg_input}>
-        <Text style={styles.input_label} >Email</Text>
+        <Text style={styles.input_label} >E-mail</Text>
         <TextInput />
         </View>
         <View style={styles.reg_input}>
         <Text style={styles.input_label} >Пароль</Text>
         <TextInput />
         </View>
+        <View style={styles.reg_input}>
+        <Text style={styles.input_label} >Пароль ещё раз</Text>
+        <TextInput />
+        </View>
         <View style={styles.reg_button}>
-      <Button title="Создать" color={"#000"}/>
+      <Button onPress={() => navigation.navigate('Login page')} title="Создать" color={"#000"}/>
       </View>
       </View>
      
