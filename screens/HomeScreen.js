@@ -10,7 +10,7 @@ export class HomeScreen extends Component {
             source={require("../assets/avatar.png")}
             style={styles.image_avatar}
           />
-          <Image source={require("../assets/heart.png")} />
+          <Image source={require("../assets/heart.png")} style={styles.heart_img}/>
           <Image source={require("../assets/search.png")} />
         </View>
         <View style={styles.content_container}>
@@ -41,19 +41,19 @@ export class HomeScreen extends Component {
         </View>
         <View style={styles.bottom_panel}>
         <View style={styles.panelItem}>
-          <Image source={require("../assets/avatar.png")} />
+          <Image source={require("../assets/home.png")} style={styles.bottom_pannel__image} />
           <Button title="Главная" color={'#B4B4B4'}/>
         </View>
         <View style={styles.panelItem}>
-          <Image source={require("../assets/avatar.png")} />
+          <Image source={require("../assets/event.png")} style={styles.bottom_pannel__image} />
           <Button title="События" color={'#B4B4B4'}/>
         </View>
         <View style={styles.panelItem}>
-          <Image source={require("../assets/avatar.png")} />
+          <Image source={require("../assets/save.png")} style={styles.bottom_pannel__image} />
           <Button title="Избранное" color={'#B4B4B4'}/>
         </View>
         <View style={styles.panelItem}>
-          <Image source={require("../assets/avatar.png")} />
+          <Image source={require("../assets/profile.png")} style={styles.bottom_pannel__image} />
           <Button title="Профиль" color={'#B4B4B4'}/>
         </View>
         </View>
@@ -69,12 +69,12 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   bottom_panel: {
-    backgroundColor: '#FFF',
+    backgroundColor: '#222',
     position: "absolute",
-    width: 346,
-    height: 56,
+    width: 386,
+    height: 66,
     bottom: 40,
-    left: 40,
+    left: 25,
     borderRadius: 40,
     display: 'flex',
     justifyContent: 'center',
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 24,
     fontWeight: "600",
-    marginBottom: 30
+    marginBottom: 10
   },
   content_container: {
     display: "flex",
@@ -114,10 +114,10 @@ const styles = StyleSheet.create({
     left: 10,
   },
   bronze_century: {
-    marginTop: 150
+    marginTop: 50
   },
   silver_century: {
-    marginTop: 60
+    marginTop: 30
   },
   panelItem: {
     display: 'flex',
@@ -125,14 +125,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
- 
   gold_century: {
-    marginTop: 60
+    marginTop: 20
   },
   contentImage: {
     width: 243,
     height: 170
-  }
+  },
+  bottom_pannel__image: {
+    width: 15,
+    height: 18
+  },
+  heart_img: {
+    left: 80
+  },
 });
 
 export default HomeScreen;
