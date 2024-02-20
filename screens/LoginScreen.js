@@ -1,7 +1,26 @@
-import { View, Text, StyleSheet, TextInput, Button } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, TextInput, Button, ActivityIndicator } from "react-native";
+import React, {useState} from 'react'
+import { FIREBASE_AUTH } from "../FirebaseConfig";
 
 const LoginScreen = ({navigation}) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
+
+  const signIn = async () => {
+    setLoading(true);
+    try {
+      const response = await auth.signInWithEmailAndPassword(email, password)
+      console.log(response)
+    } catch(err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+
   return (
     <View style={styles.reg_conatiner}>
       <Text style={styles.reg_text}>Вход</Text>
@@ -9,18 +28,20 @@ const LoginScreen = ({navigation}) => {
         
         <View style={styles.reg_input}>
         <Text style={styles.input_label} >Email</Text>
-        <TextInput />
+        <TextInput value={email} onChangeText={(text) => setEmail(text)} />
         </View>
         <View style={styles.reg_input}>
         <Text style={styles.input_label} >Пароль</Text>
-        <TextInput secureTextEntry={true} />
+        <TextInput value={password}
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry={true} />
         <View style={styles.forgotPassword_container}>
           <Text style={styles.gray_text}>Восстановить пароль</Text>
         </View>
         </View>
-        <View style={styles.reg_button}>
+        {loading ? <ActivityIndicator size="large" color="#0000ff" /> : <View style={styles.reg_button}>
       <Button onPress={() => navigation.navigate('Home page')} title="Войти" color={"#000"}/>
-      </View>
+      </View>}
       <View style={styles.signUp_container}>
         <Text style={styles.gray_text}>У вас нет аккаунта?</Text>
         <Button onPress={() => navigation.navigate('Sign up page')} title="Зарегистрироваться" style={styles.reg_Button} color={"#FFF"}/>

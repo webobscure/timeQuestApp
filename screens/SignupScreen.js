@@ -1,12 +1,12 @@
-import { View, Text, StyleSheet, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, TextInput, Button, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
-import { FIREBASE_AUTH } from "../FirebaseConfig";
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const auth = FIREBASE_AUTH;
+
+
 
   return (
     <View style={styles.reg_conatiner}>
@@ -29,13 +29,15 @@ const SignupScreen = ({ navigation }) => {
           <TextInput 
           secureTextEntry={true}/>
         </View>
-        <View style={styles.reg_button}>
-          <Button
-            onPress={() => navigation.navigate("Login page")}
-            title="Создать"
-            color={"#000"}
-          />
-        </View>
+        
+        {loading ? <ActivityIndicator size="large" color="#0000ff" />
+        : <View style={styles.reg_button}>
+        <Button
+          onPress={() => navigation.navigate("Login page")}
+          title="Создать"
+          color={"#000"}
+        />
+      </View>}
       </View>
     </View>
   );
