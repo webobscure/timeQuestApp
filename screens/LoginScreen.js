@@ -1,12 +1,10 @@
 import { View, Text, StyleSheet, TextInput, Button, ActivityIndicator } from "react-native";
 import React, {useState} from 'react'
-import { FIREBASE_AUTH } from "../FirebaseConfig";
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const auth = FIREBASE_AUTH;
 
   const signIn = async () => {
     setLoading(true);
