@@ -1,5 +1,6 @@
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button } from "react-native";
 import React, { Component } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export class HomeScreen extends Component {
   render() {
@@ -10,6 +11,7 @@ export class HomeScreen extends Component {
             source={require("../assets/avatar.png")}
             style={styles.image_avatar}
           />
+          
           <Image source={require("../assets/heart.png")} style={styles.heart_img}/>
           <Image source={require("../assets/search.png")} />
         </View>

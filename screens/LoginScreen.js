@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, TextInput, Button, ActivityIndicator } from "react-native";
 import React, {useState} from 'react'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
@@ -9,13 +10,22 @@ const LoginScreen = ({navigation}) => {
   const signIn = async () => {
     setLoading(true);
     try {
-      const response = await auth.signInWithEmailAndPassword(email, password)
-      console.log(response)
+      const value = await AsyncStorage.getItem("User")
+      value = JSON.parse(value)
+
+      console.log( typeof value)
+      console.log(value.email, ` vs ${email}`)
+      console.log(value.password , ` vs ${password}`)
+
+      if(value.email == email && value.password == password) {
+        console.log('Data correct')
+      }
     } catch(err) {
       console.error(err);
     } finally {
       setLoading(false);
     }
+    // navigation.navigate('Home page')
   }
 
 
@@ -38,7 +48,7 @@ const LoginScreen = ({navigation}) => {
         </View>
         </View>
         {loading ? <ActivityIndicator size="large" color="#0000ff" /> : <View style={styles.reg_button}>
-      <Button onPress={() => navigation.navigate('Home page')} title="Войти" color={"#000"}/>
+      <Button onPress={signIn} title="Войти" color={"#000"}/>
       </View>}
       <View style={styles.signUp_container}>
         <Text style={styles.gray_text}>У вас нет аккаунта?</Text>

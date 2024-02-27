@@ -1,12 +1,24 @@
 import { View, Text, StyleSheet, TextInput, Button, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordLoop, setPasswordLoop] = useState("")
   const [loading, setLoading] = useState(false);
 
-
+  const handleSignup = () => {
+    if(password == passwordLoop) {
+      AsyncStorage.setItem('User', JSON.stringify({
+        email,
+        password
+      }))
+      navigation.navigate("Login page")
+    }
+    
+   
+  }
 
   return (
     <View style={styles.reg_conatiner}>
@@ -14,7 +26,7 @@ const SignupScreen = ({ navigation }) => {
       <View style={styles.reg_block}>
         <View style={styles.reg_input}>
           <Text style={styles.input_label}>E-mail</Text>
-          <TextInput value={email} onChangeText={(text) => setEmail(text)} />
+          <TextInput value={email} onChangeText={(text) => setEmail(text)} inputMode="email" placeholder="name@mail.com" />
         </View>
         <View style={styles.reg_input}>
           <Text style={styles.input_label}>Пароль</Text>
@@ -27,13 +39,15 @@ const SignupScreen = ({ navigation }) => {
         <View style={styles.reg_input}>
           <Text style={styles.input_label}>Пароль ещё раз</Text>
           <TextInput 
+          value={passwordLoop}
+          onChangeText={(text) => setPasswordLoop(text)}
           secureTextEntry={true}/>
         </View>
         
         {loading ? <ActivityIndicator size="large" color="#0000ff" />
         : <View style={styles.reg_button}>
         <Button
-          onPress={() => navigation.navigate("Login page")}
+          onPress={handleSignup}
           title="Создать"
           color={"#000"}
         />
