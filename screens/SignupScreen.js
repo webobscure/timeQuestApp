@@ -1,23 +1,30 @@
 import { View, Text, StyleSheet, TextInput, Button, ActivityIndicator } from "react-native";
 import React, { useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { FIREBASE_AUTH } from "../firebase";
+
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordLoop, setPasswordLoop] = useState("")
   const [loading, setLoading] = useState(false);
+  const auth = FIREBASE_AUTH;
 
-  const handleSignup = () => {
-    if(password == passwordLoop) {
-      AsyncStorage.setItem('User', JSON.stringify({
-        email,
-        password
-      }))
-      navigation.navigate("Login page")
+  const signUp = async () => {
+    setLoading(true);
+    try {
+      
+      const response =  await createUserWithEmailAndPassword(auth,email,password);
+      console.log(response)
+      alert('Check your emails')
+      navigation.navigate('Login page')
+    } catch(err) {
+      console.error(err);
+      alert('Registration failed:' + err.message)
+    } finally {
+      setLoading(false);
     }
-    
-   
   }
 
   return (
@@ -47,7 +54,7 @@ const SignupScreen = ({ navigation }) => {
         {loading ? <ActivityIndicator size="large" color="#0000ff" />
         : <View style={styles.reg_button}>
         <Button
-          onPress={handleSignup}
+          onPress={signUp}
           title="Создать"
           color={"#000"}
         />

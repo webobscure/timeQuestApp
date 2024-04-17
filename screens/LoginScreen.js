@@ -1,31 +1,26 @@
 import { View, Text, StyleSheet, TextInput, Button, ActivityIndicator } from "react-native";
 import React, {useState} from 'react'
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { FIREBASE_AUTH } from "../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const auth = FIREBASE_AUTH;
   const signIn = async () => {
     setLoading(true);
     try {
-      const value = await AsyncStorage.getItem("User")
-      value = JSON.parse(value)
-
-      console.log( typeof value)
-      console.log(value.email, ` vs ${email}`)
-      console.log(value.password , ` vs ${password}`)
-
-      if(value.email == email && value.password == password) {
-        console.log('Data correct')
-      }
+      
+      const response =  await signInWithEmailAndPassword(auth,email,password);
+      console.log(response)
+      navigation.navigate('Home page')
     } catch(err) {
       console.error(err);
+      alert('Registration failed:' + err.message)
     } finally {
       setLoading(false);
     }
-    // navigation.navigate('Home page')
   }
 
 

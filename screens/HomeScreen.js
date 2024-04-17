@@ -1,11 +1,22 @@
 import { Text, View, StyleSheet, Image, TouchableOpacity, Button } from "react-native";
-import React, { Component } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, { Component, useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { FIREBASE_AUTH } from "../firebase";
 
-export class HomeScreen extends Component {
-  render() {
+
+  export default function HomeScreen({navigation}) {
+    const [user, setUser] = useState()
+
+    useEffect(() => {
+      onAuthStateChanged(FIREBASE_AUTH, (user) => {
+        console.log(user)
+        setUser(user)
+      })
+    },[])
     return (
-      <View style={styles.black_container} class="h-full">
+      <>
+      {user ? (
+        <View style={styles.black_container} class="h-full">
         <View style={styles.header_panel}>
           <Image
             source={require("../assets/avatar.png")}
@@ -56,13 +67,15 @@ export class HomeScreen extends Component {
         </View>
         <View style={styles.panelItem}>
           <Image source={require("../assets/profile.png")} style={styles.bottom_pannel__image} />
-          <Button title="Профиль" color={'#B4B4B4'}/>
+          <Button title="Профиль" color={'#B4B4B4'} onPress={() => navigation.navigate("Profile page")}/>
         </View>
         </View>
       </View>
+      ) : (<Text>Hello</Text>)}
+      </>
     );
   }
-}
+ 
 
 const styles = StyleSheet.create({
   black_container: {
@@ -143,4 +156,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
