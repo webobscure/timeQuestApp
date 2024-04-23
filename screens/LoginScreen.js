@@ -9,6 +9,7 @@ const LoginScreen = ({navigation}) => {
   const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
   const signIn = async () => {
+    /*
     setLoading(true);
     try {
       
@@ -21,6 +22,8 @@ const LoginScreen = ({navigation}) => {
     } finally {
       setLoading(false);
     }
+    */
+    navigation.navigate('Home page')
   }
 
 

@@ -8,6 +8,8 @@ import SignupScreen from '../screens/SignupScreen';
 import NavigationScreen from '../screens/NavigationScreen';
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import EventScreen from '../screens/EventScreen';
+import FavoriteScreen from '../screens/FavoriteScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +27,8 @@ export default function AppNavigation() {
                 <Stack.Screen name="Navigation page" options={{headerShown: false}} component={NavigationScreen} />
                 <Stack.Screen name="Home page" options={{headerShown: false}} component={HomeScreen} />
                 <Stack.Screen name="Profile page" options={{headerShown: false}} component={ProfileScreen} />
+                <Stack.Screen name="Event page" options={{headerShown: false}} component={EventScreen} />
+                <Stack.Screen name="Favorite page" options={{headerShown: false}} component={FavoriteScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     )

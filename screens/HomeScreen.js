@@ -2,6 +2,7 @@ import { Text, View, StyleSheet, Image, TouchableOpacity, Button } from "react-n
 import React, { Component, useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { FIREBASE_AUTH } from "../firebase";
+import Navbar from "../components/Navbar";
 
 
   export default function HomeScreen({navigation}) {
@@ -52,24 +53,7 @@ import { FIREBASE_AUTH } from "../firebase";
             </TouchableOpacity>
           </View>
         </View>
-        <View style={styles.bottom_panel}>
-        <View style={styles.panelItem}>
-          <Image source={require("../assets/home.png")} style={styles.bottom_pannel__image} />
-          <Button title="Главная" color={'#B4B4B4'}/>
-        </View>
-        <View style={styles.panelItem}>
-          <Image source={require("../assets/event.png")} style={styles.bottom_pannel__image} />
-          <Button title="События" color={'#B4B4B4'}/>
-        </View>
-        <View style={styles.panelItem}>
-          <Image source={require("../assets/save.png")} style={styles.bottom_pannel__image} />
-          <Button title="Избранное" color={'#B4B4B4'}/>
-        </View>
-        <View style={styles.panelItem}>
-          <Image source={require("../assets/profile.png")} style={styles.bottom_pannel__image} />
-          <Button title="Профиль" color={'#B4B4B4'} onPress={() => navigation.navigate("Profile page")}/>
-        </View>
-        </View>
+        <Navbar />
       </View>
       ) : (<Text>Hello</Text>)}
       </>
@@ -83,19 +67,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  bottom_panel: {
-    backgroundColor: '#222',
-    position: "absolute",
-    width: 386,
-    height: 66,
-    bottom: 40,
-    left: 25,
-    borderRadius: 40,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
+  
   century_title: {
     color: "#FFF",
     fontSize: 24,
@@ -134,12 +106,7 @@ const styles = StyleSheet.create({
   silver_century: {
     marginTop: 30
   },
-  panelItem: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+  
   gold_century: {
     marginTop: 20
   },
