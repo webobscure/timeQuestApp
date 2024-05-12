@@ -30,7 +30,7 @@ import Navbar from "../components/Navbar";
         <View style={styles.content_container}>
           <View style={styles.bronze_century}>
             <Text style={styles.century_title}>Бронзовый Век</Text>
-            <TouchableOpacity style={styles.oneRow}>
+            <TouchableOpacity style={styles.oneRow} horizontal={true}>
               <Image source={require("../assets/content.png")} style={styles.contentImage}/>
               <Image source={require("../assets/contentThree.png")} style={styles.contentImage}/>
               <Image source={require("../assets/contentTwo.png")} style={styles.contentImage}/>
@@ -38,7 +38,7 @@ import Navbar from "../components/Navbar";
           </View>
           <View style={styles.silver_century}>
             <Text style={styles.century_title}>Серебрянный Век</Text>
-            <TouchableOpacity style={styles.oneRow}>
+            <TouchableOpacity style={styles.oneRow} horizontal={true}>
               <Image source={require("../assets/content.png")} style={styles.contentImage}/>
               <Image source={require("../assets/contentTwo.png")} style={styles.contentImage}/>
               <Image source={require("../assets/contentThree.png")} style={styles.contentImage}/>
@@ -46,7 +46,7 @@ import Navbar from "../components/Navbar";
           </View>
           <View style={styles.gold_century}>
             <Text style={styles.century_title}>Золотой Век</Text>
-            <TouchableOpacity style={styles.oneRow}>
+            <TouchableOpacity style={styles.oneRow} horizontal={true}>
               <Image source={require("../assets/contentThree.png")} style={styles.contentImage}/>
               <Image source={require("../assets/contentThree.png")} style={styles.contentImage}/>
               <Image source={require("../assets/contentTwo.png")} style={styles.contentImage}/>
